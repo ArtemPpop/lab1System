@@ -21,45 +21,55 @@ namespace lab1System
         private int upperBound;
         private int currentGuess;
 
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int MessageBox(IntPtr hWnd, string lpText, string lpCaption, int uType);
+
+    
+        private const int MB_OK = 0;
+
         public MainWindow()
         {
             InitializeComponent();
             lowerBound = 0;
             upperBound = 100;
-            ResponsePanel.Visibility = Visibility.Collapsed;
+            ResponsePanel.Visibility = Visibility.Collapsed; 
         }
 
         private void StartGame_Click(object sender, RoutedEventArgs e)
         {
+
             lowerBound = 0;
             upperBound = 100;
             ResponsePanel.Visibility = Visibility.Visible;
             StartButton.Visibility = Visibility.Collapsed;
-            MakeGuess();
+            MakeGuess(); 
         }
 
         private void MakeGuess()
         {
+    
             currentGuess = (lowerBound + upperBound) / 2;
             GuessLabel.Content = $"Мое предположение: {currentGuess}";
         }
 
         private void Response_Click(object sender, RoutedEventArgs e)
         {
+
             var button = sender as System.Windows.Controls.Button;
 
             switch (button.Name)
             {
-                case "YesButton":
-                    MessageBox.Show("Ура! Я угадал ваше число!");
+                case "YesButton": 
+                    MessageBox(IntPtr.Zero, "Ура! Я угадал ваше число!", "Игровое сообщение", MB_OK);
                     RestartGame();
                     break;
-                case "LowerButton":
-                    upperBound = currentGuess - 1;
+                case "LowerButton": 
+                    upperBound = currentGuess - 1; 
                     MakeGuess();
                     break;
-                case "HigherButton":
-                    lowerBound = currentGuess + 1;
+                case "HigherButton": 
+                    lowerBound = currentGuess + 1; 
                     MakeGuess();
                     break;
             }
@@ -67,8 +77,10 @@ namespace lab1System
 
         private void RestartGame()
         {
-            StartButton.Visibility = Visibility.Visible;
-            ResponsePanel.Visibility = Visibility.Collapsed;
+            lowerBound = 0;
+            upperBound = 100;
+            ResponsePanel.Visibility = Visibility.Collapsed; 
+            StartButton.Visibility = Visibility.Visible; 
         }
     }
 }
