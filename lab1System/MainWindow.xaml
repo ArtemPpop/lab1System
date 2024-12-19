@@ -1,0 +1,21 @@
+﻿<Window x:Class="lab1System.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab1System"
+        mc:Ignorable="d"
+          Title="Угадай число" Height="200" Width="400">
+    <Grid>
+        <Label Name="InstructionLabel" Content="Загадайте число от 0 до 100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10" FontSize="14"/>
+        <Button Name="StartButton" Content="Начать игру" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Click="StartGame_Click"/>
+        <StackPanel Name="ResponsePanel" Orientation="Vertical" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Bottom" Visibility="Collapsed">
+            <Label Name="GuessLabel" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Name="YesButton" Content="да" Click="Response_Click" Width="60" Margin="5"/>
+                <Button Name="LowerButton" Content=" число меньше" Click="Response_Click" Width="150" Margin="5"/>
+                <Button Name="HigherButton" Content="  число больше" Click="Response_Click" Width="150" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
